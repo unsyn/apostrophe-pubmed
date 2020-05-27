@@ -1,28 +1,26 @@
 module.exports = {
-  name: 'apostrophe-pubmed',
-  alias: 'pubmed',
-  label: 'PubMed',
+  name: 'apostrophe-crossref',
+  alias: 'crossref',
+  label: 'CrossRef',
   extend: 'apostrophe-pieces',
 
   beforeConstruct: function(self, options) {
-
   },
 
   afterConstruct: function(self, callback) {
-    self.pubmedAddRoute();
+    self.crossrefAddRoute();
     return setImmediate(callback);
   },
 
   construct: function(self, options) {
-
     var superGetCreateSingletonOptions = self.getCreateSingletonOptions;
     self.getCreateSingletonOptions = function(req) {
       var browserOptions = superGetCreateSingletonOptions(req);
-      browserOptions.pubmedConfig = self.options.pubmed
+      browserOptions.crossrefConfig = self.options.crossref
       return browserOptions;
     };
 
-    self.pubmedAddRoute = function() {
+    self.crossrefAddRoute = function() {
       require('./lib/routes.js')(self, options);
     };
 

@@ -1,28 +1,29 @@
 {
-  "name": "apostrophe-pubmed",
-  "version": "1.0.4",
-  "description": "Piece subclass with an enhanced editor modal for easily syncing single PubMed docs to new piece instances",
+  "name": "apostrophe-crossref",
+  "version": "1.0.0",
+  "description": "Piece subclass with an enhanced editor modal for easily syncing single CrossRef docs to new piece instances",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/punkave/apostrophe-pubmed.git"
+    "url": "git+https://github.com/unsyn/apostrophe-crossref.git"
   },
   "keywords": [
     "apostrophe",
     "cms",
     "apostrophecms",
-    "pubmed"
+    "crossref"
   ],
   "author": "P'unk Avenue",
+  "contributors": [
+    "Johannes Stein"
+  ],
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/punkave/apostrophe-pubmed/issues"
-  },
-  "homepage": "https://github.com/punkave/apostrophe-pubmed#readme",
+  "homepage": "https://github.com/unsyn/apostrophe-crossref#readme",
   "dependencies": {
+    "crossref": "^1.2.1",
     "lodash": "^4.17.4",
     "moment": "^2.17.1",
     "node-ncbi": "^0.5.0"

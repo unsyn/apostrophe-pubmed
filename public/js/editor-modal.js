@@ -1,4 +1,4 @@
-apos.define('apostrophe-pubmed-editor-modal', {
+apos.define('apostrophe-crossref-editor-modal', {
   extend: 'apostrophe-pieces-editor-modal',
 
   construct: function(self, options) {
@@ -10,35 +10,35 @@ apos.define('apostrophe-pubmed-editor-modal', {
           return callback(err);
         }
 
-        if (!options.pubmedConfig) {
-          console.log('PubMed module needs a field to enhance and sync map');
+        if (!options.crossrefConfig) {
+          console.log('CrossRef module needs a field to enhance and sync map');
           return callback(null);
         }
 
-        if (!options.pubmedConfig.enhanceField) {
-          console.log('Need a field to enhance with the sync button. This is the name of a field in your schema (should be something like pubmedid)');
+        if (!options.crossrefConfig.enhanceField) {
+          console.log('Need a field to enhance with the sync button. This is the name of a field in your schema (should be something like crossrefId)');
           return callback(null);
         }
 
-        if (!options.pubmedConfig.mapFields) {
-          console.log('Need a mapFields object in pubmed modules config. { "apostropheField" : "pubmedField" }');
+        if (!options.crossrefConfig.mapFields) {
+          console.log('Need a mapFields object in crossref modules config. { "apostropheField" : "crossrefField" }');
           return callback(null);
         }
 
-        var animationClass = "apos-pubmed-autocompleted"
-        var $enhanceTarget = self.$el.find('[data-name="'+ options.pubmedConfig.enhanceField +'"]');
+        var animationClass = "apos-crossref-autocompleted"
+        var $enhanceTarget = self.$el.find('[data-name="'+ options.crossrefConfig.enhanceField +'"]');
         var enhanceTargetLabel = $enhanceTarget.find('.apos-field-label').text();
 
         $enhanceTarget
-          .addClass('apos-pubmed-enhanced-fieldset')
-          .append('<a href="#" class="apos-button apos-pubmed-sync-button" data-pubmed-sync-button>Sync from PubMed</a>');
+          .addClass('apos-crossref-enhanced-fieldset')
+          .append('<a href="#" class="apos-button apos-crossref-sync-button" data-crossref-sync-button>Sync from CrossRef</a>');
 
-        self.$el.find('[data-pubmed-sync-button]').on('click', function() {
+        self.$el.find('[data-crossref-sync-button]').on('click', function() {
 
           var id = $enhanceTarget.find('input').val();
 
           var request = $.ajax({
-            url: self.action + '/pubmed/' + id,
+            url: self.action + '/crossref/' + encodeURIComponent(id),
             method: "GET",
             dataType: "json"
           });
@@ -73,9 +73,9 @@ apos.define('apostrophe-pubmed-editor-modal', {
               .addClass('pl-success')
               .find('.apos-field-label').text(enhanceTargetLabel)
 
-            Object.keys(options.pubmedConfig.mapFields).map(function (key) {
+            Object.keys(options.crossrefConfig.mapFields).map(function (key) {
               self.$el.find('[name="'+ key +'"]')
-                .val(response.body[options.pubmedConfig.mapFields[key]])
+                .val(response.body[options.crossrefConfig.mapFields[key]])
                 .addClass(animationClass)
             });
 
