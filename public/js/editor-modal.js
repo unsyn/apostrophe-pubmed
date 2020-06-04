@@ -37,6 +37,7 @@ apos.define('apostrophe-crossref-editor-modal', {
 
           var id = $enhanceTarget.find('input').val();
 
+          apos.ui.globalBusy(true);
           var request = $.ajax({
             url: self.action + '/crossref/' + encodeURIComponent(id),
             method: "GET",
@@ -44,12 +45,10 @@ apos.define('apostrophe-crossref-editor-modal', {
           });
 
           request.always(function() {
-            apos.ui.globalBusy(true);
+            apos.ui.globalBusy(false);
           });
 
           request.done(function(response) {
-            apos.ui.globalBusy(false);
-
             if (response.error) {
               $enhanceTarget
                 .removeClass('apos-error')
