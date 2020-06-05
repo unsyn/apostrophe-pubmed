@@ -94,7 +94,7 @@ apos.define('apostrophe-crossref-editor-modal', {
               } else {
                 // need to create a text field for abstract, and set a timeout
                 $('[data-abstract-edit-view] button[data-apos-add-item]').click();
-                setTimeout(() => $('[data-abstract-edit-view] [data-rich-text]').html(response.body.journalAbstract), 500);
+                setTimeout(function(){ $('[data-abstract-edit-view] [data-rich-text]').html(response.body.journalAbstract) }, 800);
               }
             }
 
