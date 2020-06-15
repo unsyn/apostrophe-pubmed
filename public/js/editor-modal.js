@@ -87,14 +87,14 @@ apos.define('apostrophe-crossref-editor-modal', {
 
             // TODO this is project specific code. likely move to a hook defined at runtime
             // after mappings, handle setting rich text field with the abstract
-            if(response.body.journalAbstract) {
+            if(response.body.abstract) {
               if($('[data-abstract-edit-view] [data-rich-text]').length) {
                 // text field for abstract is present, just edit it
-                $('[data-abstract-edit-view] [data-rich-text]').html(response.body.journalAbstract);
+                $('[data-abstract-edit-view] [data-rich-text]').html(response.body.abstract);
               } else {
                 // need to create a text field for abstract, and set a timeout
                 $('[data-abstract-edit-view] button[data-apos-add-item]').click();
-                setTimeout(function(){ $('[data-abstract-edit-view] [data-rich-text]').html(response.body.journalAbstract) }, 800);
+                setTimeout(function(){ $('[data-abstract-edit-view] [data-rich-text]').html(response.body.abstract) }, 800);
               }
             }
 
